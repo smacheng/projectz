@@ -1,0 +1,47 @@
+.admin-page {
+
+.promo-slides{
+  height: auto !important; 
+  width: 100% !important; 
+}
+
+.promo-slide{
+  width: 100% !important; 
+}
+
+.promo-img{
+  width: 100% !important; 
+}
+
+.slide-zoom{
+  height: 100%; 
+}
+  
+.swiper-slide {
+    overflow-y: scroll;
+    display: block;
+}
+  ion-card {
+    position: relative;
+    text-align: center;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 60%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+  }
+}
+
+

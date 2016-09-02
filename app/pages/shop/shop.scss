@@ -1,0 +1,35 @@
+
+.shop-page {
+
+
+// .header-opaque .toolbar-content{
+//   color: white; 
+// }
+
+.header-opaque .toolbar-background {
+  background-color: rgba(color($colors, danger), 0.70); 
+}
+
+
+  .slide-zoom{
+    height: 100%; 
+  }
+
+  .shop-header{
+    width: 100%; 
+    // position: relative; 
+    // top: -1em;
+  }
+
+
+.swiper-slide {
+    overflow-y: scroll;
+    display: block;
+}
+
+
+
+ 
+}
+
+

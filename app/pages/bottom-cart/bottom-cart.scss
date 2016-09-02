@@ -1,0 +1,19 @@
+.bottom-cart-page{
+// this is all for toolbar !! 
+
+
+
+}
+.opaque {
+	-webkit-backdrop-filter: saturate(100%) blur(20px);
+	backdrop-filter: saturate(100%) blur(10px);
+	min-height: 3em;
+}
+
+.opaque .toolbar-content{
+	color: white; 
+}
+
+.opaque .toolbar-background {
+  background-color: rgba(#4A4A4A, 0.90); 
+}

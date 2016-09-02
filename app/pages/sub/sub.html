@@ -1,0 +1,92 @@
+<!--
+  Generated template for the SubPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+    <form padding #myForm="ngForm"  (ngSubmit)="addTheItem(myForm.value, item.form)">
+            {{item.title}}
+   
+        <ion-item *ngFor="let item of item.form | keysPipe">
+            <ion-label>{{item.title}}</ion-label>
+            <ion-input  type="text" [name]="item.title" [(ngModel)]='item.value' #title="ngModel" ></ion-input>
+        </ion-item>
+
+
+
+      <ion-item *ngIf="item.id ==='third' ">
+        <ion-label>Shops</ion-label>
+        <ion-select name="shop_key" [(ngModel)]='item.shop_key'>
+          <ion-option *ngFor="let shop of shops | async" [value]="shop.$key" >{{shop.title}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item *ngIf="item.id ==='third' ">
+        <ion-label>Categories</ion-label>
+        <ion-select name="category_key" [(ngModel)]='item.category_key'>
+          <ion-option [value]="category.$key" *ngFor="let category of categories | async" >{{category.title}}</ion-option>
+        </ion-select>
+      </ion-item>
+      
+
+      <ion-item *ngIf="item.id ==='third'">
+          {{item.shop_key}} {{item.category_key}}
+      </ion-item>
+
+
+
+        <div padding>
+            <button  type="submit" >Add New Item</button>
+            <button  (click)="cancelItem($event)">Cancel</button>
+        </div>
+
+
+        <div padding>
+            <p *ngIf="error" class="error">Error:&nbsp;{{ error.code }}</p>
+        </div>
+    
+    </form>
+
+
+<ion-list padding>
+  <ion-list-header>
+    My {{item.title}}
+  </ion-list-header>
+
+
+  <ion-card *ngFor="let item of list | async" (click)="goTo(item.$key)">
+    
+    <img *ngIf="item.image"[src]="item.image"/>
+    
+    <div *ngIf="item.image" class="card-title" primary>{{item.title}}</div>
+
+    
+    
+    <ion-row no-padding *ngIf="item.category_key">
+      <ion-col> {{item.category_key}} </ion-col>
+      <ion-col> {{item.shop_key}} </ion-col>
+    </ion-row>
+
+    
+    <ion-row no-padding>
+        
+      <ion-col text-right>
+        <button (click)="removeItem(item.$key)" clear small danger>
+          <ion-icon name="remove-circle"></ion-icon>
+          Remove
+        </button>
+      </ion-col>
+    </ion-row>
+  
+
+  </ion-card>
+
+
+</ion-list>
+
+
+

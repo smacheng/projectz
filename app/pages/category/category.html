@@ -1,0 +1,33 @@
+<ion-content padding>
+
+
+
+  <ion-card *ngFor="let item of items | async | catPipe: category.$key" >
+    
+    <img [src]="item.image"/>
+    <ion-card-title>
+          {{item.title}}
+    </ion-card-title>
+    <p>
+      {{item.price}} Bs.
+    </p>
+
+
+
+  <ion-item>
+  
+        <button (click)="_cartModel.addToCart(item)" item-right clear>
+              <ion-icon name="add"></ion-icon>
+        </button>
+          
+        <span item-right>{{_cartModel.counter(item.$key)}}</span>            
+
+        <button item-right (click)="_cartModel.removeFromCart(item.$key)" clear>
+              <ion-icon name="remove"></ion-icon>
+        </button>
+
+  </ion-item>
+  </ion-card>
+
+
+

@@ -1,0 +1,37 @@
+.login-page {
+
+}
+
+.login-content{
+
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-color: #A6BBBF; 
+
+
+}	
+.login-page .logo {
+  padding: 20px 0;
+  min-height: 200px;
+  text-align: center;
+}
+
+.login-page .logo img {
+  max-width: 150px;
+}
+
+.login-page button {
+  width: 60%;
+}
+
+
+.facebook{
+    background: rgba(110, 132, 180, 1);
+  background: -moz-linear-gradient(left, rgba(110, 132, 180, 1) 0%, rgba(59, 88, 151, 1) 56%, rgba(59, 88, 151, 1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(110, 132, 180, 1)), color-stop(56%, rgba(59, 88, 151, 1)), color-stop(100%, rgba(59, 88, 151, 1)));
+  background: -webkit-linear-gradient(left, rgba(110, 132, 180, 1) 0%, rgba(59, 88, 151, 1) 56%, rgba(59, 88, 151, 1) 100%);
+  background: -o-linear-gradient(left, rgba(110, 132, 180, 1) 0%, rgba(59, 88, 151, 1) 56%, rgba(59, 88, 151, 1) 100%);
+  background: -ms-linear-gradient(left, rgba(110, 132, 180, 1) 0%, rgba(59, 88, 151, 1) 56%, rgba(59, 88, 151, 1) 100%);
+  background: linear-gradient(to right, rgba(110, 132, 180, 1) 0%, rgba(59, 88, 151, 1) 56%, rgba(59, 88, 151, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e84b4', endColorstr='#3b5897', GradientType=1 );
+}

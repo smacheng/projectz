@@ -1,0 +1,27 @@
+<!--
+  Generated template for the BottomCartPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- This has to be a general footer -->
+<ion-footer (click)="showCartModal()" *ngIf="_cartModel.cart.length > 0" class="animated bounce" >
+  <ion-toolbar  class="opaque">
+
+      <ion-buttons left>
+        <button  >
+          <ion-icon name="cart"></ion-icon>
+               |  {{_cartModel.totalPrice()}} Bs.
+        </button>
+      </ion-buttons>
+
+    <ion-buttons right >
+        <button >
+          Comprar ahora 
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+
+      </ion-buttons>
+
+  </ion-toolbar>
+</ion-footer>
