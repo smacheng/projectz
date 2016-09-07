@@ -29,19 +29,54 @@
 <ion-list>
 <ion-card *ngFor="let item of _cartModel.cart">
   <ion-item-sliding>
-  <ion-item>
-    <ion-thumbnail item-left>
-      <img [src]="item.item.image">
-    </ion-thumbnail>
-    <h2>{{item.item.title}}</h2>
-    <p>{{item.item.price}}</p>
-  </ion-item>
+  
+    <ion-item>
+        <ion-thumbnail item-left>
+          <img [src]="item.item.image">
+        </ion-thumbnail>
+        <h2>{{item.item.title}}</h2>
+        <p>{{item.item.price}} Bs.    
+        <span item-right>{{_cartModel.counter(item.item.$key)}}</span> </p>
 
-        <ion-item-options side="right">
-      <button primary>
-        <ion-icon name="mail"></ion-icon>
-        Email
-      </button>
+
+
+    </ion-item>
+
+    <ion-item>
+
+          <ion-row>
+             <ion-col width-50 text-center>
+                  <button primary (click)="_cartModel.addToCart(item.item)" item-right clear>
+              <ion-icon  name="add"></ion-icon>
+        </button>
+          </ion-col>
+          
+
+            <ion-col width-50 text-center danger>        
+            <button item-right (click)="_cartModel.removeFromCart(item.item.$key)" clear>
+              <ion-icon name="remove"></ion-icon>
+        </button>
+
+        </ion-col>
+                    
+
+          </ion-row>
+
+   
+
+
+
+    </ion-item>
+
+
+
+    
+
+
+    <ion-item-options >
+    
+
+
     </ion-item-options>
 
   </ion-item-sliding>
