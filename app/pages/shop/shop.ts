@@ -1,10 +1,12 @@
 import { Component,ViewChild } from '@angular/core';
-import { NavController,NavParams, Slides,SegmentButton,Content } from 'ionic-angular';
+import { NavController,NavParams, Slides,SegmentButton,Content,LoadingController } from 'ionic-angular';
 import {MainService} from '../../services/mainService';
 import {HelperService} from '../../services/helperService';
 import {CategoryPage} from '../category/category';
 import {BottomCartPage} from '../bottom-cart/bottom-cart';
-
+import {Observable} from 'rxjs/Observable';
+import 'rxjs';
+import * as _ from 'lodash';
 
 
 /*
@@ -25,32 +27,44 @@ export class ShopPage {
   shop: any;
   categories: any = []; 
   selectedSegment:any;
-  items: any; 
+  items: Observable<any[]>;
 
   @ViewChild('mySlider') sliderComponent: Slides;
   @ViewChild(Content) content: Content;
 
 
-  constructor(private navCtrl: NavController, private params: NavParams,private service: MainService,private helper: HelperService) {
+  constructor(private loadingCtrl: LoadingController,private navCtrl: NavController, private params: NavParams,private service: MainService,
+    private helper: HelperService) {
   		this.shop = this.service.getObject('Shops',this.params.get('key'));
-      this.items = this.service.getListBy('Items', 'shop_key', this.params.get('key'));     
-    
+      this.items = this.service.getListBy('Items', 'shop_key', this.params.get('key'));
+      
+      // this.showLoader();
+
+
+       
+
   }
 
   createCategories(){
+        this.items.subscribe(val =>{
+            let dirty = []
+            let cat = [];
+            val.forEach(val =>{ 
+                // this.service.getObject('Categories', val.category_key).subscribe(val =>{ 
+                //    _.find(this.categories, {$key : val.$key}) ? '' : this.categories.push(val)
+                // })
+                dirty.push(val.category_key)
+            })
+             
+            this.helper.removeDuplicates(dirty).forEach(val =>{ 
+              cat.push(this.service.getObject('Categories', val))
+            })
 
-      var dirtyCategories = [] 
-      // Do I really need all this ? 
-      this.items.subscribe(val =>{ 
-              val.forEach(val =>{ 
-                  dirtyCategories.push(val.category_key)
-              })
-          })
-      this.helper.removeDuplicates(dirtyCategories).forEach(val =>{   
-          this.service.getObject('Categories', val).subscribe(val =>{ 
-            this.categories.push(val)
-          })
-      })
+            Observable.forkJoin(cat).subscribe(val =>{ 
+              console.log(val)
+            })
+
+        })
   }
 
   onSegmentChanged(segmentButton: SegmentButton) {
@@ -73,9 +87,8 @@ export class ShopPage {
 
   ngOnInit() {
       this.content.resize();
-      this.createCategories()
-      this.selectedSegment = this.categories[0].$key
-      
+      this.createCategories(); 
+     
   }
 
 

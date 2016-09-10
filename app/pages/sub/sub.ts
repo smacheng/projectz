@@ -1,11 +1,10 @@
 import { Component,Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { KeysPipe } from "../../pipes/keys-pipe";
-// import { FirebaseObjectObservable } from 'angularfire2';
 import {MainService} from '../../services/mainService';
 import * as _ from 'lodash';
 import {Category,Shop,ItemCat,Item} from '../../models/models';
-import {ShopPage} from '../shop/shop';
+import {EditshopPage} from '../editshop/editshop';
 
 
 
@@ -73,8 +72,8 @@ export class SubPage {
   }
 	  
 
-  goTo(key){
-  	this.navCtrl.push(ShopPage, {key: key})
+  goTo(shop){
+  	this.navCtrl.push(EditshopPage, {shop: shop, shops: this.shops})
   }
 
   ngOnInit(){

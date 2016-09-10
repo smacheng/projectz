@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { NavController,Slides,SegmentButton } from 'ionic-angular';
+import { NavController,Slides,SegmentButton,NavParams } from 'ionic-angular';
 import {MainService} from '../../services/mainService';
 import {Shop,Category,ItemCat, Item} from '../../models/models';
 import {SubPage} from '../sub/sub';
@@ -26,7 +26,7 @@ export class AdminPage {
   @ViewChild('mySlider') sliderComponent: Slides;
 
 
-  constructor(private navCtrl: NavController, private service: MainService ) {
+  constructor(private navCtrl: NavController, private service: MainService, private params: NavParams ) {
        this.shops = this.service.getList('Shops');
   }
 

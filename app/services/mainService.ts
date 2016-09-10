@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFire,FirebaseObjectObservable } from 'angularfire2';
+import 'rxjs';
 
 
 // Here i am setting onBoarding
@@ -24,6 +25,13 @@ export class MainService {
   pushObject(list, object){
 		return this.af.database.list(list).push(object)
   }
+
+  // setObject(object,key,value){
+  //   this.af.database.object('/'+object+'/'+key).set(value).then(val =>{ 
+  //     console.log(val)
+  //   })
+  // }
+
   getObject(object,key){
     return this.af.database.object('/'+object+'/'+key)
   }

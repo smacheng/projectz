@@ -11,20 +11,25 @@ export class HelperService {
         
   }
 
+  // removeDuplicates(array){
+  //   return _.map(
+  //       _.uniq(
+  //         _.map(array, function(obj){
+  //           return JSON.stringify(obj);
+  //         })
+  //         ), function(obj) {
+  //         return JSON.parse(obj);
+  //       }
+  //       );
+  // }
+
+
   removeDuplicates(array){
-    return _.map(
-        _.uniq(
-          _.map(array, function(obj){
-            return JSON.stringify(obj);
-          })
-          ), function(obj) {
-          return JSON.parse(obj);
-        }
-        );
+
+       return array.filter(function(elem, index, self) {
+              return index == self.indexOf(elem);
+            })
   }
-
-
-
 
 
 }

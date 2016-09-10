@@ -13,6 +13,20 @@
         <ion-item *ngFor="let item of item.form | keysPipe">
             <ion-label>{{item.title}}</ion-label>
             <ion-input  type="text" [name]="item.title" [(ngModel)]='item.value' #title="ngModel" ></ion-input>
+            
+            <ion-datetime [name]="item.title" *ngIf="item.title === 'start_time'"  pickerFormat="h mm A" 
+            [(ngModel)]="item.value">
+            </ion-datetime>
+
+
+            <ion-datetime [name]="item.title" *ngIf="item.title === 'end_time'"  pickerFormat="h mm A" 
+            [(ngModel)]="item.value">
+            </ion-datetime>
+
+     
+
+
+
         </ion-item>
 
 
@@ -58,7 +72,7 @@
   </ion-list-header>
 
 
-  <ion-card *ngFor="let item of list | async" (click)="goTo(item.$key)">
+  <ion-card *ngFor="let item of list | async" (click)="goTo(item)">
     
     <img *ngIf="item.image"[src]="item.image"/>
     

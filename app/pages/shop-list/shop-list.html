@@ -1,0 +1,26 @@
+
+
+  
+  <ion-card  *ngFor="let item of shops"  (click)="go(item)" >
+    
+    <img *ngIf="item.image"[src]="item.image"/>    
+    <div *ngIf="item.image" class="card-title" >
+     <span>{{item.title}}</span> 
+    </div>
+    
+
+
+  <ion-item>
+    <span item-right>
+      <ion-icon ios="ios-time" md="md-time"></ion-icon>
+    </span>
+<!--   <pre>
+    {{item | json}}
+  </pre> -->
+  
+  </ion-item>
+
+
+
+
+  </ion-card>

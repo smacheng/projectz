@@ -1,0 +1,68 @@
+<!--
+  Generated template for the EditshopPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Shop</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+    <form padding #myForm="ngForm"  (ngSubmit)="editItem(myForm.value)">
+
+        <ion-item *ngFor="let item of shop | keysPipe">
+            <ion-label>{{item.title}} </ion-label>
+            <ion-input  type="text" [name]="item.title" [(ngModel)]='item.value' #title="ngModel" ></ion-input>
+
+
+          <ion-datetime [name]="item.title" *ngIf="item.title === 'start_time'"  pickerFormat="h mm A" 
+            [(ngModel)]="item.value">
+            </ion-datetime>
+
+
+            <ion-datetime [name]="item.title" *ngIf="item.title === 'end_time'"  pickerFormat="h mm A" 
+            [(ngModel)]="item.value">
+            </ion-datetime>
+
+     
+        </ion-item>
+
+
+        <ion-item *ngIf="shop.shop_key">
+          <ion-label>Shops</ion-label>
+          <ion-select name="shop_key" [(ngModel)]='shop.shop_key'>
+            <ion-option *ngFor="let shop of shops | async" [value]="shop.$key" >{{shop.title}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+
+
+<!--         <ion-item *ngIf="item.id ==='third' ">
+          <ion-label>Categories</ion-label>
+          <ion-select name="category_key" [(ngModel)]='item.category_key'>
+            <ion-option [value]="category.$key" *ngFor="let category of categories | async" >{{category.title}}</ion-option>
+          </ion-select>
+        </ion-item> -->
+        
+
+        <div padding>
+            <button  type="submit" >Save Changes</button>
+        </div>
+
+
+        <div padding>
+            <p *ngIf="error" class="error">Error:&nbsp;{{ error.code }}</p>
+        </div>
+    
+    </form>
+
+
+</ion-content>

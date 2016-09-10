@@ -18,12 +18,6 @@
         <!-- Heere comoes the sliders -->
 
 
-  <!-- This i have to style with variables -->
-  <ion-slides class="promo-slides" [options]="{pager: true}">
-    <ion-slide class="promo-slide" *ngFor="let item of shops | async">
-      <img [src]="item.image" class="promo-img"  />
-    </ion-slide>
-  </ion-slides>
 
 
     <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">

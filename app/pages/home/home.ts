@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController, ViewController,LoadingController,NavParams } from 'ionic-angular';
-import { AngularFire,FirebaseListObservable } from 'angularfire2';
+import { NavController, LoadingController } from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
+import {MainService} from '../../services/mainService';
+import {ShopListPage} from '../shop-list/shop-list';
+import { AngularFire,FirebaseListObservable } from 'angularfire2';
 
 
-// import 'rxjs'
+
+
 /*
   Generated class for the CategoriesPagePage page.
 
@@ -12,44 +15,54 @@ import {Observable} from 'rxjs/Observable';
   Ionic pages and navigation.
 */
 @Component({
-  templateUrl: 'build/pages/home/home.html'
+  templateUrl: 'build/pages/home/home.html',
+  providers: [MainService],
+  directives: [ShopListPage]
+
 })
 
 
 
 export class HomePage {
 
-   items: Observable<any[]>;
+   // shops: Observable<any[]>;
+   shops: any; 
    loader: any;
-   item: any; 
 
 
-  constructor(private navCtrl: NavController, public menuCtrl: MenuController,public af: AngularFire,private loadingCtrl: LoadingController, private params: NavParams ) {
+  constructor(private loadingCtrl: LoadingController,private service: MainService,private navCtrl: NavController ) {      
+     this.showLoader();
 
-      this.showLoader(); 
-      this.items = this.af.database.object('/categories');
-      // this.item = params.get('item'); 
-    }
+  }
 
 
   showLoader() {
     this.loader = this.loadingCtrl.create({
-      content: 'Un ratito'
+      content: 'Porfavor espere....',
+      dismissOnPageChange: true
+
     });
-    this.loader.present();
+    this.loader.present().then(val =>{ 
+      this.getAsyncData();
+    })
+     
   }
 
   dismissLoader(){
      this.loader.dismiss()
   }
 
-  ngOnInit() {
-
-    this.items.subscribe((data) => {
-        this.dismissLoader()
+  getAsyncData() {
+    this.service.getList('Shops').subscribe(data => {
+      this.shops = data;
+      this.dismissLoader(); 
     })
   }
 
+ // ionViewWillEnter() {
+ //    // Starts the process 
+ //     this.showLoader();
+ //  }
 
 
 

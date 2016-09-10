@@ -7,29 +7,32 @@
 
 <ion-header>
   <ion-navbar danger>
-    
+
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    
-
-
-      
+      <ion-title >Tiendas</ion-title>
 
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
 
- <ion-card  *ngFor="let item of items | async">
-        <ion-card-header>
-            {{item.category_name}}
-        </ion-card-header>
-        <ion-card-content>
-            <img src="{{item.pic_url}}" alt="">
-        </ion-card-content>
-    </ion-card>
+  <!-- Promotion -->
+  <ion-slides *ngIf="shops" class="promo-slides" [options]="{pager: true}">
+    <ion-slide class="promo-slide" *ngFor="let item of shops">
+      <img [src]="item.image" class="promo-img"  />
+    </ion-slide>
+  </ion-slides>
+
+
+
+
+<shoplist  *ngIf="shops" [shops]="shops"></shoplist>
+
+
+
 
 
 
